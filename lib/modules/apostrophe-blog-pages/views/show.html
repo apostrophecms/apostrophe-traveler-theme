@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% import "macros/image.html" as image with context %}
+
+{% block title %}{{ data.piece.title }}{% endblock %}
+{% set p = data.piece %}
+
+{% block main %}
+<article class="c-article">
+  <div class="c-article__header">
+    <h1 class="o-heading">{{ p.title }}</h1>
+    <span class="o-meta c-article__date">{{ p.publishedAt | date('MMMM Do, YYYY') }}</span>
+  </div>
+  <div class="c-article__thumbnail">
+    {{ image.render(p.thumbnail) }}
+  </div>
+
+  <div class="c-article__inner">
+    {{ apos.singleton(p, 'teaser', 'apostrophe-rich-text', {
+      styles: apos.helpers.baseStyles,
+      toolbar: apos.helpers.baseToolbar
+    }) }}
+    {{ apos.area(p, 'body', { widgets: apos.helpers.widgets }) }}
+  </div>
+</article>
+
+{% endblock %}

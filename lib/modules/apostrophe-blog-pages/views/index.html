@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% import "macros/article-preview.html" as article with context %}
+
+{% block main %}
+  <div class="o-container o-columns">
+    <div class="o-column c-map">
+      <div class="c-map__inner" data-map id="map"></div>  
+    </div>
+    <div class="o-column c-article-previews">
+      {% for piece in data.pieces %}
+        {{ article.render(piece) }}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

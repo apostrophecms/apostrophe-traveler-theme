@@ -1,0 +1,20 @@
+{% import "macros/image.html" as image with context %}
+
+{% macro render(piece) %}
+  <section class="c-article-preview">
+    <div class="c-article-preview__header">
+      <h2 class="o-heading c-article-preview__title">{{ piece.title }}</h2>
+      <span class="o-meta c-article-preview__date">{{ piece.publishedAt | date('MMMM Do, YYYY') }}</span>
+    </div>
+    <div class="c-article-preview__thumbnail">
+      {{ image.render(piece.thumbnail) }}
+    </div>
+    <div class="c-article-preview__teaser">
+      {{ apos.singleton(piece, 'teaser', 'apostrophe-rich-text', { 
+        styles: apos.helpers.baseStyles,
+        toolbar: apos.helpers.baseToolbar
+       }) }}
+    </div>
+    <a class="o-meta o-button" href="{{ piece._url }}">Full Article: {{ piece.title }}</a>
+  </section>
+{% endmacro %}

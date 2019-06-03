@@ -1,0 +1,8 @@
+{% macro render(imageObj, options= {size: 'full', alt: false, description: false} ) %}
+  {% for image in imageObj.items[0]._pieces %}
+    {%- set relationship = image.relationship -%}
+    <a href="{{ apos.attachments.url(image.item.attachment, { size: 'full', crop: relationship }) }}" data-fancybox="gallery">
+      <img class="c-collage__image" src="{{ apos.attachments.url(image.item.attachment, { size: 'full', crop: relationship }) }}" />
+    </a>
+  {% endfor %}
+{% endmacro %}
